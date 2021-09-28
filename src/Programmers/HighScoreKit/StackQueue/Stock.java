@@ -7,28 +7,23 @@ import java.util.*;
  * ================================================================================================================== */
 public class Stock {
     public static int[] solution(int[] prices) {
+        int[] answer = new int[prices.length];
 
-        Queue<Integer> stock = new LinkedList<>();
-        for(int p: prices){
-            stock.add(p);
-        }
-
-        ArrayList<Integer> temp = new ArrayList<>();
-        while(!stock.isEmpty()) {
+        Stack<Integer> stk = new Stack<>();
+        for(int i = 0; i< prices.length; i++){
             int time = 0;
-            int st = stock.poll();
-
-            for(int s: stock){
-                if(st <= s){
-                    time++;
+            for(int j = i+1;j<prices.length;j++){
+                time ++;
+                if(prices[i] > prices[j]) {
+                    break;
                 }
             }
-            temp.add(time);
+            stk.push(time);
         }
-        int[] answer = new int[prices.length];
-        for(int i = 0; i<temp.size(); i++){
-            System.out.println("temp : " + temp.get(i));
-            answer[i] = temp.get(i);
+        for(int i = stk.size()-1; i >= 0; i--){
+            int temp = stk.pop();
+            System.out.println("temp : " + temp);
+            answer[i] = temp;
         }
         return answer;
     }

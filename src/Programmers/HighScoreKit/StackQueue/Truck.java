@@ -9,6 +9,9 @@ public class Truck {
     public static int solution(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
 
+        Queue<Integer> queue = new LinkedList<>();
+        int sum = 0;
+
         return answer;
     }
 
